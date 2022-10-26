@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -31,11 +32,24 @@ namespace M15_TrabalhoModelo_2022_23
             {
                 CriarBD();
             }
+            //ligação BD
+            sqlConnection = new SqlConnection(ligaBD);
+            sqlConnection.Open();
+            sqlConnection.ChangeDatabase(NomeBD);
+
         }
         /*destrutor*/
         ~BaseDados()
         {
-
+            try
+            {
+                sqlConnection.Close();
+                sqlConnection.Dispose();
+            }
+            catch
+            {
+                //Pode ocorrer erros 
+            }
         }
         private void CriarBD()
         {
@@ -78,5 +92,45 @@ namespace M15_TrabalhoModelo_2022_23
             sqlConnection.Close();
             sqlConnection.Dispose();
         }
+        /// <summary>
+        /// Vai executar um SQL que altera os dados (p.e:insert, delete ou update)
+        /// </summary>
+        public void ExecutaSQL(string sql,List<SqlParameter> parametros=null)
+        {
+            //TODO: Adicionar transações
+            SqlCommand comando = new SqlCommand(sql, sqlConnection);
+            if (parametros != null)
+            {
+                comando.Parameters.AddRange(parametros.ToArray());
+            }
+            comando.ExecuteNonQuery();
+            comando.Dispose();
+            comando = null;
+        }
+        /// <summary>
+        /// Executa uma consulta e devolve os dados da bd
+        /// </summary>
+        /// <returns>Um datatable com o resultado da consulta</returns>
+        public DataTable DevolveSQL(string sql, List<SqlParameter> parametros = null)
+        {
+            //TODO: adicionar transações
+            SqlCommand comando = new SqlCommand(sql, sqlConnection);
+            if (parametros != null)
+            {
+                comando.Parameters.AddRange(parametros.ToArray());
+            }
+            DataTable dados = new DataTable();
+
+            SqlDataReader registos=comando.ExecuteReader();
+            dados.Load(registos);
+
+            registos.Close();
+            comando.Dispose();
+            registos = null;
+            comando = null;
+
+            return dados;
+        }
+        
     }
 }

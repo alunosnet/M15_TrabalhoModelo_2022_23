@@ -1,4 +1,5 @@
-﻿using System;
+﻿using M15_TrabalhoModelo_2022_23.Livros;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,6 +18,16 @@ namespace M15_TrabalhoModelo_2022_23
         {
             InitializeComponent();
 
+        }
+        /// <summary>
+        /// Abre o form dos livros
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void livrosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            f_livro f_Livro = new f_livro();
+            f_Livro.Show();
         }
     }
 }
