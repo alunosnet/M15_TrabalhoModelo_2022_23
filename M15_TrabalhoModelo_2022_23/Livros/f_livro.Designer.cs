@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -40,7 +41,17 @@
             this.button1 = new System.Windows.Forms.Button();
             this.pbCapa = new System.Windows.Forms.PictureBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.dgLivros = new System.Windows.Forms.DataGridView();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.editarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.apagarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.cancelarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbCapa)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgLivros)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -148,11 +159,81 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // dgLivros
+            // 
+            this.dgLivros.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgLivros.ContextMenuStrip = this.contextMenuStrip1;
+            this.dgLivros.Location = new System.Drawing.Point(380, 44);
+            this.dgLivros.Name = "dgLivros";
+            this.dgLivros.Size = new System.Drawing.Size(382, 285);
+            this.dgLivros.TabIndex = 6;
+            this.dgLivros.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgLivros_CellClick);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editarToolStripMenuItem,
+            this.apagarToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.cancelarToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(121, 76);
+            // 
+            // editarToolStripMenuItem
+            // 
+            this.editarToolStripMenuItem.Name = "editarToolStripMenuItem";
+            this.editarToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.editarToolStripMenuItem.Text = "Editar";
+            this.editarToolStripMenuItem.Click += new System.EventHandler(this.editarToolStripMenuItem_Click);
+            // 
+            // apagarToolStripMenuItem
+            // 
+            this.apagarToolStripMenuItem.Name = "apagarToolStripMenuItem";
+            this.apagarToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.apagarToolStripMenuItem.Text = "Apagar";
+            this.apagarToolStripMenuItem.Click += new System.EventHandler(this.apagarToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(117, 6);
+            // 
+            // cancelarToolStripMenuItem
+            // 
+            this.cancelarToolStripMenuItem.Name = "cancelarToolStripMenuItem";
+            this.cancelarToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.cancelarToolStripMenuItem.Text = "Cancelar";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(382, 369);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(94, 34);
+            this.button3.TabIndex = 8;
+            this.button3.Text = "Apagar";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Visible = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(493, 369);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(87, 35);
+            this.button4.TabIndex = 9;
+            this.button4.Text = "Editar";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Visible = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // f_livro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(802, 450);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.dgLivros);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.pbCapa);
             this.Controls.Add(this.button1);
@@ -165,9 +246,13 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "f_livro";
             this.Text = "f_livro";
             ((System.ComponentModel.ISupportInitialize)(this.pbCapa)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgLivros)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -187,5 +272,13 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.PictureBox pbCapa;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.DataGridView dgLivros;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem editarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem apagarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem cancelarToolStripMenuItem;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
     }
 }

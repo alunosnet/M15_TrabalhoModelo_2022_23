@@ -26,7 +26,7 @@ namespace M15_TrabalhoModelo_2022_23
         /// <param name="e"></param>
         private void livrosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            f_livro f_Livro = new f_livro();
+            f_livro f_Livro = new f_livro(bd);
             f_Livro.Show();
         }
     }

@@ -87,6 +87,7 @@ namespace M15_TrabalhoModelo_2022_23
 	                    estado bit
                     );";
             sqlCommand = new SqlCommand(sql, sqlConnection);
+            sqlCommand.ExecuteNonQuery();
             //fechar a ligação ao servidor BD
             sqlCommand.Dispose();
             sqlConnection.Close();

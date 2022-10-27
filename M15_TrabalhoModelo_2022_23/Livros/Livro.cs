@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -55,6 +56,37 @@ namespace M15_TrabalhoModelo_2022_23.Livros
                 }
             };
             bd.ExecutaSQL(sql, parametros);
+        }
+
+        public static DataTable ListarTodos(BaseDados bd)
+        {
+            string sql = "SELECT * FROM Livros";
+            return bd.DevolveSQL(sql);
+        }
+
+        public DataTable Procurar(int nlivro,BaseDados bd)
+        {
+            string sql = "SELECT * FROM Livros WHERE nlivro=" + nlivro;
+            DataTable temp= bd.DevolveSQL(sql);
+
+            if(temp!=null && temp.Rows.Count>0)
+            {
+                this.Nlivro = int.Parse(temp.Rows[0]["nlivro"].ToString());
+                this.Nome = temp.Rows[0]["nome"].ToString();
+                this.Ano = int.Parse(temp.Rows[0]["ano"].ToString());
+                this.Data_Aquisicao = DateTime.Parse(temp.Rows[0]["data_aquisicao"].ToString());
+                this.Preco = Decimal.Parse(temp.Rows[0]["preco"].ToString());
+                this.Capa = temp.Rows[0]["capa"].ToString();
+                this.Estado = bool.Parse(temp.Rows[0]["estado"].ToString());
+            }
+
+            return temp;
+        }
+
+        public static void ApagarLivro(int nlivro, BaseDados bd)
+        {
+            string sql = "DELETE FROM Livros WHERE nlivro=" + nlivro;
+            bd.ExecutaSQL(sql);
         }
     }
 }
