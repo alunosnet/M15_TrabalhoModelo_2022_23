@@ -5,7 +5,9 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+//
+// Copyright (c) 2022 Paulo Ferreira. All rights reserved.
+//
 namespace M15_TrabalhoModelo_2022_23.Livros
 {
     public class Livro

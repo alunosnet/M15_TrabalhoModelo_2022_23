@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+//
+// Copyright (c) 2022 Paulo Ferreira. All rights reserved.
+//
 namespace M15_TrabalhoModelo_2022_23
 {
     internal static class Program

@@ -1,4 +1,5 @@
-﻿using M15_TrabalhoModelo_2022_23.Livros;
+﻿
+using M15_TrabalhoModelo_2022_23.Livros;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,7 +9,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+//
+// Copyright (c) 2022 Paulo Ferreira. All rights reserved.
+//
 namespace M15_TrabalhoModelo_2022_23
 {
     public partial class Form1 : Form
