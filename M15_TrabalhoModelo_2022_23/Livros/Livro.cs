@@ -90,5 +90,52 @@ namespace M15_TrabalhoModelo_2022_23.Livros
             string sql = "DELETE FROM Livros WHERE nlivro=" + nlivro;
             bd.ExecutaSQL(sql);
         }
+
+        public void Atualizar(BaseDados bd)
+        {
+            string sql = @"UPDATE Livros SET nome=@nome,ano=@ano,data_aquisicao=@data_aquisicao,
+                                preco=@preco,capa=@capa 
+                                WHERE nlivro=@nlivro";
+            List<SqlParameter> parametros = new List<SqlParameter>()
+            {
+                new SqlParameter()
+                {
+                    ParameterName="@nome",
+                    SqlDbType=System.Data.SqlDbType.VarChar,
+                    Value=this.Nome
+                },
+                new SqlParameter()
+                {
+                    ParameterName="@ano",
+                    SqlDbType=System.Data.SqlDbType.Int,
+                    Value=this.Ano
+                },
+                new SqlParameter()
+                {
+                    ParameterName="@data_aquisicao",
+                    SqlDbType=System.Data.SqlDbType.Date,
+                    Value=this.Data_Aquisicao.Date
+                },
+                new SqlParameter()
+                {
+                    ParameterName="@preco",
+                    SqlDbType=System.Data.SqlDbType.Decimal,
+                    Value=this.Preco
+                },
+                new SqlParameter()
+                {
+                    ParameterName="@capa",
+                    SqlDbType=System.Data.SqlDbType.VarChar,
+                    Value=this.Capa
+                },
+                new SqlParameter()
+                {
+                    ParameterName="@nlivro",
+                    SqlDbType=System.Data.SqlDbType.Int,
+                    Value=this.Nlivro
+                }
+            };
+            bd.ExecutaSQL(sql, parametros);
+        }
     }
 }

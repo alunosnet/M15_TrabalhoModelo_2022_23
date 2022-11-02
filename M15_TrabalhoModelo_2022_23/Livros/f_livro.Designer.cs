@@ -49,6 +49,8 @@
             this.cancelarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbCapa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgLivros)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -163,8 +165,9 @@
             // 
             this.dgLivros.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgLivros.ContextMenuStrip = this.contextMenuStrip1;
-            this.dgLivros.Location = new System.Drawing.Point(380, 44);
+            this.dgLivros.Location = new System.Drawing.Point(382, 72);
             this.dgLivros.Name = "dgLivros";
+            this.dgLivros.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgLivros.Size = new System.Drawing.Size(382, 285);
             this.dgLivros.TabIndex = 6;
             this.dgLivros.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgLivros_CellClick);
@@ -221,16 +224,37 @@
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(87, 35);
             this.button4.TabIndex = 9;
-            this.button4.Text = "Editar";
+            this.button4.Text = "Atualizar";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Visible = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(607, 371);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(90, 33);
+            this.button5.TabIndex = 10;
+            this.button5.Text = "Cancelar";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Visible = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(385, 39);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(378, 20);
+            this.textBox1.TabIndex = 11;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // f_livro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(802, 450);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.dgLivros);
@@ -280,5 +304,7 @@
         private System.Windows.Forms.ToolStripMenuItem cancelarToolStripMenuItem;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

@@ -156,16 +156,95 @@ namespace M15_TrabalhoModelo_2022_23.Livros
         {
             ApagarRegisto();
         }
-
+        /// <summary>
+        /// Atualizar
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button4_Click(object sender, EventArgs e)
         {
-
+            //Validar os dados
+            string nome = tbNome.Text;
+            if (nome == "" || nome.Length < 3)
+            {
+                MessageBox.Show("Nome tem de ter pelo menos 3 letras.");
+                tbNome.Focus();
+                return;
+            }
+            int ano = 0;
+            if (int.TryParse(tbAno.Text, out ano) == false)
+            {
+                MessageBox.Show("O ano tem de ser preenchido com valores entre 1000 e o ano atual.");
+                tbAno.Focus();
+                return;
+            }
+            if (ano < 1000 || ano > DateTime.Now.Year)
+            {
+                MessageBox.Show("O ano tem de ser preenchido com valores entre 1000 e o ano atual.");
+                tbAno.Focus();
+                return;
+            }
+            DateTime data_aquisicao = dtDataAquisicao.Value;
+            if (data_aquisicao > DateTime.Now)
+            {
+                MessageBox.Show("A data de aquisição tem de ser inferior ou igual à data atual.");
+                dtDataAquisicao.Focus();
+                return;
+            }
+            decimal preco;
+            if (decimal.TryParse(tbPreco.Text, out preco) == false)
+            {
+                MessageBox.Show("O preço tem de ser superior ou igual a zero.");
+                tbPreco.Focus();
+                return;
+            }
+            if (preco < 0 || preco >= 100)
+            {
+                MessageBox.Show("O preço tem de ser superior ou igual a zero.");
+                tbPreco.Focus();
+                return;
+            }
+            /*A capa é opcional*/
+            if (string.IsNullOrEmpty(capa) == false && capa.Contains("M15_TrabalhoModelo")==false)
+            {
+                if (System.IO.File.Exists(capa) == false)
+                {
+                    MessageBox.Show("O ficheiro indicado para a capa não existe.");
+                    button1.Focus();
+                    return;
+                }
+                //guardar imagem
+                Guid guid = Guid.NewGuid();
+                string caminhoBD = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+                caminhoBD += "\\M15_TrabalhoModelo\\";
+                caminhoBD += guid.ToString();
+                //copiar o ficheiro
+                System.IO.File.Copy(capa, caminhoBD);
+                capa = caminhoBD;
+                //TODO: apagar a capa antiga
+            }
+            //Criar um objeto livro
+            Livro livro = new Livro();
+            //Preencher as propriedades
+            livro.Nome = nome;
+            livro.Ano = ano;
+            livro.Capa = capa;
+            livro.Data_Aquisicao = data_aquisicao;
+            livro.Preco = preco;
+            livro.Nlivro = nlivro_escolhido;
+            //Guardar na BD
+            livro.Atualizar(bd);
+            //Limpar o form
+            LimparForm();
+            AtualizaGrelha();
+            //TODO: manter selecionada a linha do último livro editado
         }
 
         private void dgLivros_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             button3.Visible = true;
             button4.Visible = true;
+            button5.Visible = true;
             button2.Visible = false;
 
             int linha = dgLivros.CurrentCell.RowIndex;
@@ -186,7 +265,10 @@ namespace M15_TrabalhoModelo_2022_23.Livros
                 capa = escolhido.Capa;
             }
             else
+            {
                 pbCapa.Image = null;
+                capa = String.Empty;
+            }
             nlivro_escolhido = escolhido.Nlivro;
         }
     
@@ -224,8 +306,24 @@ namespace M15_TrabalhoModelo_2022_23.Livros
             button2.Visible = true;
             button3.Visible = false;
             button4.Visible = false;
+            button5.Visible = false;
             //Atualizar a grelha
             AtualizaGrelha();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            LimparForm();
+            button3.Visible = false;
+            button4.Visible = false;
+            button2.Visible = true;
+            button5.Visible = false;
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            //pesquisar na bd o livro com nome like textBox1.text
+            //atualizar grelha com resultado da pesquisa
         }
     }
 }
