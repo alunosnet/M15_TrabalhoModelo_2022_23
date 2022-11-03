@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
-
+//
+// Copyright (c) 2022 Paulo Ferreira. All rights reserved.
+//
 namespace M14_15_TrabalhoModelo_1920_WIP
 {
     class Utils

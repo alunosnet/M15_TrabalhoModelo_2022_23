@@ -137,5 +137,36 @@ namespace M15_TrabalhoModelo_2022_23.Livros
             };
             bd.ExecutaSQL(sql, parametros);
         }
+
+        public static DataTable PesquisaPorNome(BaseDados bd, string nome)
+        {
+            string sql = @"SELECT * FROM Livros WHERE nome LIKE @nome";
+            List<SqlParameter> parametros = new List<SqlParameter>()
+            {
+                new SqlParameter()
+                {
+                    ParameterName="@nome",
+                    SqlDbType=System.Data.SqlDbType.VarChar,
+                    Value="%"+nome+"%"
+                },
+            };
+            return bd.DevolveSQL(sql, parametros);
+        }
+        public static int NrRegistos(BaseDados bd)
+        {
+            string sql = "SELECT count(*) as NrRegistos from Livros";
+            DataTable dados = bd.DevolveSQL(sql);
+            int nr = int.Parse(dados.Rows[0][0].ToString());
+            dados.Dispose();
+            return nr;
+        }
+
+        public static DataTable ListarTodos(BaseDados bd, int primeiroregisto, int ultimoregisto)
+        {
+            string sql = $@"SELECT nlivro,nome,ano,data_aquisicao,Preco,Capa,Estado FROM
+                        (SELECT row_number() over (order by nlivro) as Num,* FROM Livros) as T
+                        WHERE Num>={primeiroregisto} AND Num<={ultimoregisto}";
+            return bd.DevolveSQL(sql);
+        }
     }
 }

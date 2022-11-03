@@ -1,4 +1,5 @@
 ﻿
+using M15_TrabalhoModelo_2022_23.Leitores;
 using M15_TrabalhoModelo_2022_23.Livros;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,12 @@ namespace M15_TrabalhoModelo_2022_23
         {
             f_livro f_Livro = new f_livro(bd);
             f_Livro.Show();
+        }
+
+        private void leitoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            f_leitor f_leitor = new f_leitor(bd);
+            f_leitor.Show();
         }
     }
 }
