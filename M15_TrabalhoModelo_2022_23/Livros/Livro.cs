@@ -173,5 +173,18 @@ namespace M15_TrabalhoModelo_2022_23.Livros
         {
             return this.Nome;
         }
+
+        public static DataTable ListarDisponiveis(BaseDados bd)
+        {
+
+            string sql = "SELECT * FROM Livros WHERE estado=1";
+            return bd.DevolveSQL(sql);
+        }
+        public static DataTable ListarEmprestados(BaseDados bd)
+        {
+
+            string sql = "SELECT * FROM Livros WHERE estado=0";
+            return bd.DevolveSQL(sql);
+        }
     }
 }

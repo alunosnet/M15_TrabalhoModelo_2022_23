@@ -124,5 +124,10 @@ namespace M15_TrabalhoModelo_2022_23.Leitores
                 );
             bd.ExecutaSQL(sql, parametros);
         }
+
+        public override string ToString()
+        {
+            return this.Nome;
+        }
     }
 }

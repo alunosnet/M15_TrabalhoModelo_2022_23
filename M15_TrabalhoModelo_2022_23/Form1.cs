@@ -22,7 +22,16 @@ namespace M15_TrabalhoModelo_2022_23
         public Form1()
         {
             InitializeComponent();
-
+            TopLeitores();
+        }
+        public void TopLeitores()
+        {
+            string sql = @"SELECT Nome,count(*) as [Nr Empréstimos] FROM Leitores 
+                            INNER JOIN Emprestimos ON 
+                            Leitores.nleitor=Emprestimos.nleitor
+                        GROUP By Emprestimos.nleitor, Nome
+                        ORDER BY count(*) DESC";
+            dataGridView1.DataSource = bd.DevolveSQL(sql);
         }
         /// <summary>
         /// Abre o form dos livros
@@ -45,6 +54,12 @@ namespace M15_TrabalhoModelo_2022_23
         {
             f_emprestimo emprestimo = new f_emprestimo(bd);
             emprestimo.Show();
+        }
+
+        private void devoluçãoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            f_devolve devolve = new f_devolve(bd);
+            devolve.Show();
         }
     }
 }
