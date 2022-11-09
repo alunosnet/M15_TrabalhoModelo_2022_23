@@ -168,5 +168,10 @@ namespace M15_TrabalhoModelo_2022_23.Livros
                         WHERE Num>={primeiroregisto} AND Num<={ultimoregisto}";
             return bd.DevolveSQL(sql);
         }
+
+        public override string ToString()
+        {
+            return this.Nome;
+        }
     }
 }

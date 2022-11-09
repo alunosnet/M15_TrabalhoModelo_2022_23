@@ -1,4 +1,5 @@
 ﻿
+using M15_TrabalhoModelo_2022_23.Emprestimos;
 using M15_TrabalhoModelo_2022_23.Leitores;
 using M15_TrabalhoModelo_2022_23.Livros;
 using System;
@@ -38,6 +39,12 @@ namespace M15_TrabalhoModelo_2022_23
         {
             f_leitor f_leitor = new f_leitor(bd);
             f_leitor.Show();
+        }
+
+        private void empréstimosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            f_emprestimo emprestimo = new f_emprestimo(bd);
+            emprestimo.Show();
         }
     }
 }

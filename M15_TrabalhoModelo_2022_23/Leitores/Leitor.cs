@@ -77,5 +77,52 @@ namespace M15_TrabalhoModelo_2022_23.Leitores
                 this.Estado = bool.Parse(dados.Rows[0]["estado"].ToString());
             }
         }
+
+        internal static void Apagar(BaseDados bd, int nleitor_escolhido)
+        {
+            string sql = "DELETE FROM Leitores WHERE NLeitor=" + nleitor_escolhido;
+            bd.ExecutaSQL(sql);
+        }
+
+        internal void Atualizar(BaseDados bd)
+        {
+            string sql = @"UPDATE Leitores SET nome=@nome,data_nasc=@data_nasc ";
+            if (this.Fotografia != null)
+                sql += ",fotografia=@fotografia";
+            sql += " WHERE nleitor=@nleitor";
+                        
+            List<SqlParameter> parametros = new List<SqlParameter>()
+            {
+                new SqlParameter()
+                {
+                    ParameterName="@nome",
+                    SqlDbType=System.Data.SqlDbType.VarChar,
+                    Value=this.Nome
+                },
+                new SqlParameter()
+                {
+                    ParameterName="@data_nasc",
+                    SqlDbType=System.Data.SqlDbType.Date,
+                    Value=this.DataNascimento
+                },
+                
+                new SqlParameter()
+                {
+                    ParameterName="@nleitor",
+                    SqlDbType=SqlDbType.Int,
+                    Value=this.Nleitor
+                }
+            };
+            if (this.Fotografia != null)
+                parametros.Add(
+                    new SqlParameter()
+                    {
+                        ParameterName = "@fotografia",
+                        SqlDbType = System.Data.SqlDbType.VarBinary,
+                        Value = this.Fotografia
+                    }
+                );
+            bd.ExecutaSQL(sql, parametros);
+        }
     }
 }
